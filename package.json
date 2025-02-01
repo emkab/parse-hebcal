@@ -1,0 +1,33 @@
+{
+	"name": "parse-hebcal",
+	"version": "1.0.0",
+	"description": "A time and template processing library for the hebrew calendar.",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc",
+		"dev": "node dist/index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"_credit": "Most keywords are taken from the Moment.js library, as this library is in around the same space, and Moment.js is it's direct inspiration.",
+	"keywords": [
+		"hebcal",
+		"date",
+		"time",
+		"parse",
+		"format",
+		"validate",
+		"i18n",
+		"l10n"
+	],
+	"author": "em@kab",
+	"license": "ISC",
+	"type": "commonjs",
+	"devDependencies": {
+		"@types/node": "^22.13.0",
+		"typescript": "^5.7.3"
+	},
+	"dependencies": {
+		"@hebcal/core": "^5.9.0"
+	}
+}
