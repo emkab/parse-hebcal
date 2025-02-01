@@ -1,5 +1,6 @@
 import { Token, TokenType } from "./types";
 import { tokenToString } from "./utils";
+import { hKeywords } from "./consts";
 
 class Lexer {
 	private input: string;
@@ -125,14 +126,5 @@ class Lexer {
 		return this.tokens;
 	}
 }
-
-const hKeywords: { [key: string]: string } = {
-	DAY: "DDDD",
-	MONTH: "MMMM",
-	YEAR: "YYYY",
-	DAY_OF_WEEK: "ddd",
-	MONTH_NAME: "mmm",
-	YEAR_HEBREW: "yyyy",
-};
 
 export { Lexer };
