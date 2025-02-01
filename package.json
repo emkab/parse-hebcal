@@ -6,8 +6,7 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "tsc",
-		"dev": "node dist/index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "node dist/index.js"
 	},
 	"_credit": "Most keywords are taken from the Moment.js library, as this library is in around the same space, and Moment.js is it's direct inspiration.",
 	"keywords": [
