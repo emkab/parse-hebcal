@@ -43,7 +43,15 @@ class Lexer {
 
 		switch (this.ch) {
 			case this.ch.match(/\s/)?.[0]:
-				token = new Token(TokenType.WHITESPACE, this.ch);
+				let whitespace = "";
+				while (this.ch.match(/\s/)?.[0]) {
+					whitespace += this.ch;
+					this.readChar();
+				}
+
+				token = new Token(TokenType.WHITESPACE, whitespace);
+
+				this.readPosition -= 1;
 				break;
 
 			case this.ch.match(/[a-zA-Z]/)?.[0]:
@@ -58,6 +66,20 @@ class Lexer {
 				} else {
 					token = new Token(TokenType.ILLEGAL, identifier);
 				}
+
+				this.readPosition -= 1;
+				break;
+
+			case this.ch.match(/[0-9]/)?.[0]:
+				let number = "";
+				while (this.ch.match(/[0-9]/)?.[0]) {
+					number += this.ch;
+					this.readChar();
+				}
+
+				token = new Token(TokenType.NUMBER, number);
+
+				this.readPosition -= 1;
 				break;
 
 			case "\0":
@@ -65,12 +87,24 @@ class Lexer {
 				break;
 
 			default:
-				token = new Token(TokenType.ILLEGAL, this.ch);
+				let illegal = "";
+				while (!this.isLegal(this.ch)) {
+					illegal += this.ch;
+					this.readChar();
+				}
+
+				token = new Token(TokenType.ILLEGAL, illegal);
+
+				this.readPosition -= 1;
 				break;
 		}
 
 		this.readChar();
 		return token;
+	}
+
+	private isLegal(ch: string): boolean {
+		return ch.match(/[a-zA-Z0-9\s]/)?.[0] ? true : false && ch !== "\0";
 	}
 
 	public toString(): string {
@@ -85,6 +119,10 @@ class Lexer {
 		}
 
 		return output;
+	}
+
+	public getTokens(): Token[] {
+		return this.tokens;
 	}
 }
 
